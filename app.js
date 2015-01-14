@@ -1,6 +1,6 @@
 var express = require('express');
 var app     = express();
-var port    = process.env.PORT || 8001;
+var port    = process.env.PORT || 80;
 
 var http    = require('http');
 var server  = http.createServer(app);
