@@ -10,30 +10,31 @@
   <!-- Put the button outside the form to avoid redirect or reload -->
   <form enctype="multipart/form-data">
     <input name="file" type="file">
+    <button>Upload</button>
   </form>
-  <div>Upload</div>
+  <div></div>
   <script type="text/javascript">
   var qq;
   var form = document.getElementsByTagName('form')[0];
-  document.getElementsByTagName("div")[0].onclick = function() {
-    
+  document.getElementsByTagName("button")[0].onclick = function(event) {
+    event.preventDefault();
     var formData = new FormData(form);
     var fileInput = document.getElementsByTagName('input')[0];
 
     var xhr = new XMLHttpRequest();
     xhr.open('post', 'upload', true);
     xhr.send(formData);
+    xhr.upload.onprogress = function(e){
+      if (e.lengthComputable) {
+        var complete = (e.loaded / e.total * 100 | 0);
+        if(100==complete){
+            complete=99.9;
+        }
+        // up_progress.innerHTML = complete + ' %';
+      }
+    };
     xhr.onreadystatechange = function(){
       if (xhr.readyState==4 && xhr.status==200) {
-        // var xhr2 = new XMLHttpRequest();
-        // xhr2.open('post', 'filename', true);
-        // xhr2.send();
-        // xhr2.onreadystatechange =function(){
-        //   if (xhr2.readyState==4 && xhr2.status==200) {
-        //     document.getElementsByTagName("div")[0].innerHTML=xhr2.responseText;    
-        //     console.log(xhr2.responseText)
-        //   }
-        // }
         document.getElementsByTagName("div")[0].innerHTML=xhr.responseText;    
         console.log(xhr.responseText)
         

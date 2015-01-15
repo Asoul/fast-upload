@@ -55,10 +55,6 @@ app.post('/upload', function(req, res) {
   // res.send('Yo');
 });
 
-app.post('/filename', function(req, res) {
-  res.send('filename');
-});
-
 server.listen(port, function(){
   console.log("Server listen on port: " + port);  
 });
