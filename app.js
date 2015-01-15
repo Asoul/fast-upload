@@ -8,8 +8,9 @@ var server  = http.createServer(app);
 
 var fs      = require('fs');
 var multer  = require('multer');
+// var autoReap  = require('multer-autoreap');
 
-// var session = require('express-session');
+var session = require('express-session');
 // var cookieParser  = require('cookie-parser');
 
 /* Confuguration */
@@ -43,16 +44,17 @@ app.use(multer({
   },
   onFileUploadComplete: function (file) {
     console.log(file.originalname + ' uploaded to  ' + file.path);
-    // var message = {user: "不知道是誰傳了一個新檔案", data: "<a href='/uploads/"+file.name+"' >"+file.originalname+"</a>"};
-    // io.sockets.emit('new_message', message);
-    // home_messages.push(message);
   }
 }));
 
 /* API Functions */
 
-app.post('/upload', function(req, res) {// I dont know why do there
-  res.redirect("/");
+app.post('/upload', function(req, res) {
+  res.send('Yo');
+});
+
+app.post('/filename', function(req, res) {
+  res.send('filename');
 });
 
 server.listen(port, function(){
