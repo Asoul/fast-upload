@@ -11,7 +11,7 @@
   <form enctype="multipart/form-data">
     <input name="file" type="file">
   </form>
-  <div style="background-color: #000000; color: #ffffff;">Upload</div>
+  <div>Upload</div>
   <script type="text/javascript">
   var qq;
   var form = document.getElementsByTagName('form')[0];
@@ -21,21 +21,21 @@
     var fileInput = document.getElementsByTagName('input')[0];
 
     var xhr = new XMLHttpRequest();
-    // Add any event handlers here...
     xhr.open('post', 'upload', true);
     xhr.send(formData);
     xhr.onreadystatechange = function(){
       if (xhr.readyState==4 && xhr.status==200) {
-        var xhr2 = new XMLHttpRequest();
-        xhr2.open('post', 'filename', true);
-        xhr2.send();
-        xhr2.onreadystatechange =function(){
-          if (xhr2.readyState==4 && xhr2.status==200) {
-            document.getElementsByTagName("div")[0].innerHTML=xhr2.responseText;    
-            console.log(xhr2.responseText)
-          }
-        }
-        
+        // var xhr2 = new XMLHttpRequest();
+        // xhr2.open('post', 'filename', true);
+        // xhr2.send();
+        // xhr2.onreadystatechange =function(){
+        //   if (xhr2.readyState==4 && xhr2.status==200) {
+        //     document.getElementsByTagName("div")[0].innerHTML=xhr2.responseText;    
+        //     console.log(xhr2.responseText)
+        //   }
+        // }
+        document.getElementsByTagName("div")[0].innerHTML=xhr.responseText;    
+        console.log(xhr.responseText)
         
       }
     };

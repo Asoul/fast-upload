@@ -10,7 +10,6 @@
     "ejs": "^1.0.0",
     "express": "~4.10.7",
     "multer": "~0.1.7",
-    "multer-autoreap": "0.0.8",
     "express-session": "~1.10.1"
   }
 }

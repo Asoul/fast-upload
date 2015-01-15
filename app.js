@@ -17,11 +17,12 @@ var session = require('express-session');
 // app.use(express.static(require("path").join(__dirname, 'public')));
 app.set('view engine', 'ejs'); // set up ejs for templating
 // app.use(cookieParser());
-// app.use(session({
-//   secret: 'ilovecomputernetwork',
-//   resave: false,
-//   saveUninitialized: true
-// }));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 /* Global Variables */
 
@@ -39,8 +40,9 @@ app.get('/', function(req, res){
 
 app.use(multer({
   dest: __dirname + '/public/uploads/',
-  onFileUploadStart: function (file) {
-    console.log(file.fieldname + ' is starting ...');
+  onFileUploadStart: function (file, res) {
+    res.send(file.name)
+    console.log(file.fieldname + ' is starting ...' + file.name);
   },
   onFileUploadComplete: function (file) {
     console.log(file.originalname + ' uploaded to  ' + file.path);
@@ -50,7 +52,7 @@ app.use(multer({
 /* API Functions */
 
 app.post('/upload', function(req, res) {
-  res.send('Yo');
+  // res.send('Yo');
 });
 
 app.post('/filename', function(req, res) {
