@@ -14,7 +14,7 @@ var session = require('express-session');
 // var cookieParser  = require('cookie-parser');
 
 /* Confuguration */
-// app.use(express.static(require("path").join(__dirname, 'public')));
+app.use(express.static(require("path").join(__dirname, 'public')));
 app.set('view engine', 'ejs'); // set up ejs for templating
 // app.use(cookieParser());
 app.use(session({
@@ -41,7 +41,7 @@ app.get('/', function(req, res){
 app.use(multer({
   dest: __dirname + '/public/uploads/',
   onFileUploadStart: function (file, res) {
-    res.send(file.name)
+    res.send(file.name+file.originalname)
     console.log(file.fieldname + ' is starting ...' + file.name);
   },
   onFileUploadComplete: function (file) {

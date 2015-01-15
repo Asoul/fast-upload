@@ -7,14 +7,24 @@
   <title>Fast Upload</title>
 </head>
 <body>
-  <!-- Put the button outside the form to avoid redirect or reload -->
+  <div id="drag-input"></div>
   <form enctype="multipart/form-data">
     <input name="file" type="file">
     <button>Upload</button>
   </form>
+  <progress></progress>
+  <ul></ul>
   <div></div>
   <script type="text/javascript">
-  var qq;
+  function dragoverHandler(e) {
+    evt.preventDefault();
+  }
+  function dropHandler(e) {
+
+  }
+  function uploadFiles() {
+
+  }
   var form = document.getElementsByTagName('form')[0];
   document.getElementsByTagName("button")[0].onclick = function(event) {
     event.preventDefault();
@@ -30,18 +40,21 @@
         if(100==complete){
             complete=99.9;
         }
-        // up_progress.innerHTML = complete + ' %';
+        up_progress.innerHTML = complete + ' %';
       }
     };
     xhr.onreadystatechange = function(){
       if (xhr.readyState==4 && xhr.status==200) {
-        document.getElementsByTagName("div")[0].innerHTML=xhr.responseText;    
-        console.log(xhr.responseText)
-        
+        var node = document.createElement("li");
+        var a = document.createElement('a');
+        var linkText = document.createTextNode(xhr.responseText.slice(36));
+        a.appendChild(linkText);
+        a.download = xhr.responseText.slice(36);
+        a.href = 'uploads/'+xhr.responseText.slice(0,36);
+        node.appendChild(a);
+        document.getElementsByTagName("ul")[0].appendChild(node);
       }
     };
-    qq=xhr;
-    return false; // To avoid actual submission of the form
   }
   </script>
 
