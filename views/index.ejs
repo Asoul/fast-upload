@@ -10,12 +10,12 @@
   <title>Chatchat</title>
 </head>
 <body>
+  <!-- Put the button outside the form to avoid redirect or reload -->
   <form enctype="multipart/form-data">
     <input name="file" type="file">
   </form>
   <div>Upload</div>
   <script type="text/javascript">
-  // The Javascript
   var form = document.getElementsByTagName('form')[0];
   document.getElementsByTagName("div")[0].onclick = function() {
     console.log("here");
