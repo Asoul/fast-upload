@@ -24,12 +24,6 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 /* Global Variables */
 
-var user_list = [];
-var password_dict = {};
-
-var online_list = [];
-
-var home_messages = [];
 
 /* Socket IO Settings */
 
@@ -49,9 +43,9 @@ app.use(multer({
   },
   onFileUploadComplete: function (file) {
     console.log(file.originalname + ' uploaded to  ' + file.path);
-    var message = {user: "不知道是誰傳了一個新檔案", data: "<a href='/uploads/"+file.name+"' >"+file.originalname+"</a>"};
+    // var message = {user: "不知道是誰傳了一個新檔案", data: "<a href='/uploads/"+file.name+"' >"+file.originalname+"</a>"};
     // io.sockets.emit('new_message', message);
-    home_messages.push(message);
+    // home_messages.push(message);
   }
 }));
 
