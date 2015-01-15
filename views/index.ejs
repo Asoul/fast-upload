@@ -1,34 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Upload Files</title>
-
-</head>
-<body>
-  <form enctype="multipart/form-data" action="upload" method="post">
-     <input type="file" name="file"/>
-     <button>Upload</button>
-  </form>
-</body>
+<!-- The HTML -->
+<form id="the-form" action="upload" method="post" enctype="multipart/form-data">
+  <input name="file" type="file" id="the-file">
+  <!-- <input type="submit" value="Upload" /> -->
+</form>
+<div id="btn">Click</div>
 <script type="text/javascript">
-  // document.getElementsByTagName('form')[0].onsubmit = function(){
-  //   var http = new XMLHttpRequest();
-  //   // var formData = new FormData();
-  //   var file = document.getElementsByTagName('input')[0].files[0];
-  //   document.getElementsByTagName('button')[0].innerHTML = 'uploading...';
-  //   // formData.append('file', file, file.name);
-  //   http.open("post", "/upload", true);
-  //   // http.setRequestHeader("content-type","multipart/form-data");
-  //   http.setRequestHeader("content-type","multipart/form-data; boundary=----WebKitFormBoundaryPJ3nkBAABNvueun8");
-  //   // http.setRequestHeader('cache-control', 'max-age=0');
-  //   http.send(file);
-  //   http.onload = function() {
-  //       alert(http.responseText);
-  //   }
-  //   return false;
-  // };
+// The Javascript
+var form = document.getElementById('the-form');
+var btn = document.getElementById('btn');
+btn.onclick = function() {
+  var formData = new FormData(form);
+  var fileInput = document.getElementById('the-file');
+  var file = fileInput.files[0];
+  formData.append('file', file);
+
+  var xhr = new XMLHttpRequest();
+  // Add any event handlers here...
+  xhr.open('post', form.getAttribute('action'), true);
+  xhr.send(formData);
+
+  return false; // To avoid actual submission of the form
+}
 </script>
-</html>
