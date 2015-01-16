@@ -30,17 +30,17 @@
     event.preventDefault();
     var formData = new FormData(form);
     var fileInput = document.getElementsByTagName('input')[0];
-
+    
     var xhr = new XMLHttpRequest();
     xhr.open('post', 'upload', true);
     xhr.send(formData);
     xhr.upload.onprogress = function(e){
+      console.log('/')
+      console.log(e)
       if (e.lengthComputable) {
-        var complete = (e.loaded / e.total * 100 | 0);
-        if(100==complete){
-            complete=99.9;
-        }
-        up_progress.innerHTML = complete + ' %';
+        var progress = document.getElementsByTagName('progress')[0];
+        progress.max = e.total;
+        progress.value = e.loaded;
       }
     };
     xhr.onreadystatechange = function(){
