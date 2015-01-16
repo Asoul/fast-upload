@@ -4,33 +4,13 @@ var port    = 8001;
 
 var http    = require('http');
 var server  = http.createServer(app);
-// var io      = require('socket.io')(server);
 
 var fs      = require('fs');
 var multer  = require('multer');
-// var autoReap  = require('multer-autoreap');
-
-var session = require('express-session');
-// var cookieParser  = require('cookie-parser');
 
 /* Confuguration */
 app.use(express.static(require("path").join(__dirname, 'public')));
 app.set('view engine', 'ejs'); // set up ejs for templating
-// app.use(cookieParser());
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
-
-/* Global Variables */
-
-
-/* Socket IO Settings */
-
-
-/* Routers */
 
 app.get('/', function(req, res){
   res.render('index');
