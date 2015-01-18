@@ -9,6 +9,7 @@ var fs      = require('fs');
 var multer  = require('multer');
 
 /* Confuguration */
+app.use(express.compress());
 app.use(express.static(require("path").join(__dirname, 'public')));
 app.set('view engine', 'ejs'); // set up ejs for templating
 
