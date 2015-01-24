@@ -23,6 +23,8 @@ db.on("error", function(error) {
     console.log(error);
 });
 
+app.use(express.favicon(__dirname + '/public/favicon.ico')); 
+
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
 
