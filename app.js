@@ -14,6 +14,7 @@ var redis   = require('redis');
 var db      = redis.createClient('6379', '127.0.0.1');
 
 var morgan  = require('morgan');
+var favicon = require('serve-favicon');
 
 /****** Confuguration ******/
 // set up ejs for templating
@@ -23,7 +24,7 @@ db.on("error", function(error) {
     console.log(error);
 });
 
-app.use(express.favicon(__dirname + '/public/favicon.ico')); 
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
