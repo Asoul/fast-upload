@@ -14,7 +14,6 @@ var redis   = require('redis');
 var db      = redis.createClient('6379', '127.0.0.1');
 
 var morgan  = require('morgan');
-var favicon = require('serve-favicon');
 
 /****** Confuguration ******/
 // set up ejs for templating
@@ -23,8 +22,6 @@ app.set('view engine', 'ejs');
 db.on("error", function(error) {
     console.log(error);
 });
-
-app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
@@ -74,7 +71,7 @@ app.get('/uploads/:token', function(req, res){
 // "intercept" errors, otherwise Connect
 // will respond with 500 "Internal Server Error".
 app.get('*', function(req, res){
-  console.log((new Date()).toLocaleString(), '[ERROR] ', req.url);
+  console.log((new Date()).toLocaleString()+'[ERROR] ', req.url);
   res.status(404);
 
   // respond with html page
@@ -92,6 +89,8 @@ app.get('*', function(req, res){
   // default to plain-text. send()
   res.type('txt').send('Not found');
 });
+
+app.use(require('serve-favicon')(__dirname + '/public/favicon.ico'));
 
 server.listen(port, function(){
   console.log("Server listen on port: " + port);  
