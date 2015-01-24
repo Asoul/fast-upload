@@ -23,12 +23,20 @@ var proceed = options.onFileUploadStart(file, res);
 
 ## 更新進度
 
-#### 2015/01/23
+#### 2015/01/24 (v1.2.0)
+1. 使用 morgan，可以輸出 log
+2. 可以與 1.0.0 相容
+
+#### 2015/01/23 (v1.1.0)
 1. 檔案上傳後會自動改檔名，下載後再改回來
 2. 用 redis 當 Database，所以 server 重開舊的紀錄都在
 3. 新增 404 not found 頁面
 4. 加了 favicon
 5. server log 統一格式
+
+#### 1.0.0
+1. 基本上傳功能
+
 
 ## TODO
 1. 上傳進度條

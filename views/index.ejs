@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <link rel="shortcut icon" type="image/png" href="/favicon"/>
+  <link rel="shortcut icon" type="image/png" href="http://upmy.info/favicon.ico"/>
   <title>Fast Upload</title>
 </head>
 <body>
@@ -27,10 +27,10 @@
         var node = document.createElement("li");
         var a = document.createElement('a');
         var names = JSON.parse(xhr.responseText);
-        var linkText = document.createTextNode(names.oldname);
+        var linkText = document.createTextNode(names.originalname);
         a.appendChild(linkText);
-        a.download = names.oldname;
-        a.href = 'uploads/'+names.newname;
+        a.download = names.originalname;
+        a.href = 'uploads/'+names.token;
         node.appendChild(a);
         document.getElementsByTagName("ul")[0].appendChild(node);
       }
