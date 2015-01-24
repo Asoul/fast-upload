@@ -55,10 +55,6 @@ app.get('/', function(req, res){
   console.log((new Date()).toLocaleString()+'[NEWON] ');
 });
 
-app.get('/favicon.ico', function(req, res){
-  res.sendFile(__dirname+'/public/favicon.ico');
-});
-
 app.get('/uploads/:token', function(req, res){
   var token = req.params.token;
   db.get(token, function(err, originalname) {
