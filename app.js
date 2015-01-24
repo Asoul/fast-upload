@@ -49,7 +49,7 @@ app.use(multer({
 
 app.get('/', function(req, res){
   res.render('index');
-  console.log((new Date()).toLocaleString(), '[NEWON] ');
+  console.log((new Date()).toLocaleString()+'[NEWON] ');
 });
 
 app.get('/favicon.ico', function(req, res){
@@ -74,25 +74,25 @@ app.get('/uploads/:token', function(req, res){
 // below our routes, you will be able to
 // "intercept" errors, otherwise Connect
 // will respond with 500 "Internal Server Error".
-// app.get('*', function(req, res){
-//   console.log((new Date()).toLocaleString(), '[ERROR] ', req.url);
-//   res.status(404);
+app.get('*', function(req, res){
+  console.log((new Date()).toLocaleString(), '[ERROR] ', req.url);
+  res.status(404);
 
-//   // respond with html page
-//   if (req.accepts('html')) {
-//     res.render('404', { url: req.url });
-//     return;
-//   }
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
 
-//   // respond with json
-//   if (req.accepts('json')) {
-//     res.send({ error: 'Not found' });
-//     return;
-//   }
+  // respond with json
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
 
-//   // default to plain-text. send()
-//   res.type('txt').send('Not found');
-// });
+  // default to plain-text. send()
+  res.type('txt').send('Not found');
+});
 
 server.listen(port, function(){
   console.log("Server listen on port: " + port);  
